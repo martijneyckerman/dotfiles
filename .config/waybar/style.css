@@ -1,0 +1,136 @@
+@import "colors/cole.css";
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "Noto Sans", "JetBrains Mono Nerd Font Propo", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: @fg;
+}
+
+tooltip {
+  background: @bg0;
+  border: 1px solid @bg2;
+  border-radius: 10px;
+}
+
+tooltip label {
+  color: @fg;
+  padding: 6px 8px;
+}
+
+#workspaces,
+#clock,
+#pulseaudio,
+#network,
+#battery,
+#temperature,
+#custom-notification {
+  background: @bg0;
+  border: 1px solid @bg1;
+  border-radius: 12px;
+  margin: 0 6px;
+}
+
+#workspaces {
+  padding: 4px 6px;
+  margin-left: 12px;
+}
+
+#workspaces button {
+  background: transparent;
+  color: @grey1;
+  padding: 0 8px;
+  margin: 0 2px;
+  border-radius: 9px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    min-width 0.2s ease;
+}
+
+#workspaces button.active {
+  background: @yellow;
+  color: @bg0;
+  min-width: 30px;
+}
+
+#workspaces button:hover {
+  background: @bg1;
+  color: @fg;
+  border-radius: 9px;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+#workspaces button.urgent {
+  background: @red;
+  color: @bg0;
+}
+
+#clock,
+#pulseaudio,
+#network,
+#battery,
+#temperature,
+#custom-notification {
+  padding: 0 12px;
+  min-height: 30px;
+}
+
+#clock {
+  color: @yellow;
+}
+
+#pulseaudio {
+  color: @yellow;
+}
+
+#network {
+  color: @yellow;
+}
+
+#battery {
+  color: @yellow;
+}
+
+#temperature {
+  color: @yellow;
+}
+
+#custom-notification {
+  color: @yellow;
+  margin-right: 12px;
+}
+
+#battery.warning {
+  color: @yellow;
+}
+
+#battery.critical {
+  color: @red;
+}
+
+#temperature.critical {
+  background: @red;
+  color: @bg0;
+  border-color: @red;
+}
+
+#clock:hover,
+#pulseaudio:hover,
+#network:hover,
+#battery:hover,
+#temperature:hover,
+#custom-notification:hover,
+#workspaces button:hover {
+  background: @bg1;
+}

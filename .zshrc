@@ -1,0 +1,109 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+if [ ! -d "$ZINIT_HOME" ]; then
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+# Add in snippets
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::archlinux
+zinit snippet OMZP::aws
+zinit snippet OMZP::kubectl
+zinit snippet OMZP::kubectx
+zinit snippet OMZP::command-not-found
+
+# Load completions
+autoload -U compinit && compinit
+
+zinit cdreplay -q
+
+source <(COMPLETE=zsh tms)
+export EDITOR='nvim'
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Aliases
+alias n='nvim'
+
+alias s='yay -Ss'
+alias i='yay -S'
+alias r='yay -Rns'
+alias u='yay -Syu'
+
+alias ta="tmux attach -t"
+alias tl="tmux ls"
+
+# Keybindings
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+# Autocompletion settings
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+
+# Shell integrations
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
+
+# ghq configuration
+export GHQ_ROOT="$HOME/Documents/repos"
+alias gf='ghqf'
+alias gl='ghq list'
+alias gg='ghq get'
+
+# tmux session management with ghq
+alias ts='~/.config/scripts/tmux-sessionizer.sh'
+alias tl='tmux list-sessions'
+alias ta='tmux attach-session -t'
+alias tk='tmux kill-session -t'
+alias tn='tmux new-session -s'
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+source ~/.oh-my-zsh/oh-my-zsh.sh
+
+tmux-git-autofetch() {
+    (/home/martijn/.config/tmux/plugins/tmux-git-autofetch/git-autofetch.tmux --current &)
+}
+
+add-zsh-hook chpwd tmux-git-autofetch
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+alias ls='eza --icons=auto -l'
