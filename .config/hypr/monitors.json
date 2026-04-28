@@ -3,21 +3,21 @@
     {
       "name": "Default",
       "monitors": {
-        "desc:Acer Technologies EK220Q TJDEE0053W01": {
-          "resolution": "1920x1080",
-          "refresh_rate": 74.986,
-          "scale": 1.0,
-          "rotation": 0,
-          "position_x": 3840,
-          "position_y": 0,
-          "is_primary": false
-        },
         "eDP-1": {
           "resolution": "1920x1080",
           "refresh_rate": 60.008,
           "scale": 1.0,
           "rotation": 0,
           "position_x": 0,
+          "position_y": 0,
+          "is_primary": false
+        },
+        "desc:Acer Technologies EK220Q TJDEE0053W01": {
+          "resolution": "1920x1080",
+          "refresh_rate": 74.986,
+          "scale": 1.0,
+          "rotation": 0,
+          "position_x": 3840,
           "position_y": 0,
           "is_primary": false
         },

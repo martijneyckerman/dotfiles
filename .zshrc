@@ -41,10 +41,10 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Aliases
 alias n='nvim'
 
-alias s='yay -Ss'
-alias i='yay -S'
-alias r='yay -Rns'
-alias u='yay -Syu'
+alias s='paru -Ss'
+alias i='paru -S'
+alias r='paru -Rns'
+alias u='paru -Syu'
 
 alias ta="tmux attach -t"
 alias tl="tmux ls"

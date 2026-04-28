@@ -1,6 +1,6 @@
-theme = Cole
+theme = TokyoNight Night
 
-font-family = MesloLGS Nerd Font Mono
+font-family = SF Mono Powerline
 font-size = 13
 
 background-opacity = 0.8
