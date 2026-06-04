@@ -1,140 +1,100 @@
-@import "colors/tokyonight.css";
-
 * {
   border: none;
   border-radius: 0;
-  font-family:
-    "SF Mono Powerline", "JetBrains Mono Nerd Font Propo", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
+  font-family: "Inter", "JetBrains Mono Nerd Font", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
   min-height: 0;
   padding: 0;
-  margin: 0 4;
+  margin: 0;
 }
 
+@define-color accent       #ec8fa3;
+@define-color accent_subtle rgba(236, 143, 163, 0.15);
+@define-color accent_border rgba(236, 143, 163, 0.35);
+@define-color bg            rgba(248, 246, 244, 0.85);
+@define-color bg_hover      rgba(230, 228, 226, 0.9);
+@define-color border        rgba(0, 0, 0, 0.06);
+@define-color fg            rgba(30, 30, 30, 0.88);
+@define-color fg_muted      rgba(100, 100, 100, 0.75);
+
 window#waybar {
-  background: transparent;
+  background: @bg;
+  border-bottom: 1px solid @border;
   color: @fg;
 }
 
 tooltip {
-  background: rgba(26, 27, 38, 0.92);
-  border: 1px solid rgba(255, 158, 100, 0.25);
+  background: rgba(250, 249, 247, 0.97);
+  border: 1px solid @border;
   border-radius: 10px;
 }
 
 tooltip label {
   color: @fg;
-  padding: 6px 8px;
+  padding: 6px 10px;
+  font-size: 12px;
 }
 
-#workspaces,
-#clock,
-#pulseaudio,
-#network,
-#battery,
-#temperature,
-#custom-notification {
-  background: rgba(26, 27, 38, 0.75);
-  border: 1px solid rgba(255, 158, 100, 0.15);
-  border-radius: 12px;
-  margin: 0 6px;
-}
-
-#workspaces {
-  padding: 4px 6px;
-  margin-left: 12px;
-}
-
-#workspaces button {
-  background: transparent;
-  color: @grey1;
-  padding: 0 8px;
-  margin: 0 2px;
-  border-radius: 9px;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    min-width 0.2s ease;
-}
-
-#workspaces button.active {
-  background: rgba(255, 158, 100, 0.2);
-  color: @orange;
-  min-width: 30px;
-  border: 1px solid rgba(255, 158, 100, 0.4);
-}
-
-#workspaces button:hover {
-  background: rgba(255, 158, 100, 0.1);
+/* ── Apple button ── */
+#custom-apple {
+  font-size: 16px;
+  padding: 0 14px;
   color: @fg;
-  border-radius: 9px;
-  box-shadow: none;
-  text-shadow: none;
+  font-weight: 600;
 }
 
-#workspaces button.urgent {
-  background: rgba(247, 118, 142, 0.2);
-  color: @red;
-  border: 1px solid rgba(247, 118, 142, 0.4);
-}
-
-#clock,
-#pulseaudio,
-#network,
-#battery,
-#temperature,
-#custom-notification {
-  padding: 0 12px;
-  min-height: 30px;
-}
-
+/* ── Clock ── */
 #clock {
-  color: @orange;
-}
-
-#pulseaudio {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.2px;
   color: @fg;
+  padding: 0 10px;
 }
 
-#network {
-  color: @fg;
-}
-
+/* ── Right modules ── */
+#pulseaudio,
+#network,
 #battery {
   color: @fg;
-}
-
-#temperature {
-  color: @fg;
-}
-
-#custom-notification {
-  color: @orange;
+  padding: 0 10px;
 }
 
 #battery.warning {
-  color: @yellow;
+  color: #d08030;
 }
 
 #battery.critical {
-  color: @red;
-  background: rgba(247, 118, 142, 0.15);
-  border-color: rgba(247, 118, 142, 0.3);
+  color: #dc5050;
 }
 
-#temperature.critical {
-  background: rgba(247, 118, 142, 0.2);
-  color: @red;
-  border-color: rgba(247, 118, 142, 0.4);
+/* ── Tray ── */
+#tray {
+  padding: 0 8px;
 }
 
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+}
+
+#custom-apple:hover,
 #clock:hover,
 #pulseaudio:hover,
 #network:hover,
-#battery:hover,
-#temperature:hover,
-#custom-notification:hover {
-  background: rgba(255, 158, 100, 0.1);
-  border-color: rgba(255, 158, 100, 0.3);
+#battery:hover {
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+#custom-apple,
+#clock,
+#pulseaudio,
+#network,
+#battery {
+  transition: opacity 0.15s ease;
 }
