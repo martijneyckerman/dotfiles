@@ -50,7 +50,12 @@ export GHQ_ROOT="$HOME/Documents/repos"
 git() {
   if [[ "$1" == "clone" ]]; then
     shift
-    ghq get "$@"
+    if [[ "$1" == "--no-ghq" ]]; then
+      shift
+      command git clone "$@"
+    else
+      ghq get "$@"
+    fi
   else
     command git "$@"
   fi
@@ -118,7 +123,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
 tmux-git-autofetch() {
-    (/home/martijn/.config/tmux/plugins/tmux-git-autofetch/git-autofetch.tmux --current &)
+    (${XDG_CONFIG_HOME:-$HOME/.config}/tmux/plugins/tmux-git-autofetch/git-autofetch.tmux --current &)
 }
 
 add-zsh-hook chpwd tmux-git-autofetch
@@ -132,11 +137,11 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # bun completions
-[ -s "/home/martijn/.bun/_bun" ] && source "/home/martijn/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # Aliases
 alias ls='eza --icons -alh'
 
 # Added by flyctl installer
-export FLYCTL_INSTALL="/home/martijn/.fly"
+export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
