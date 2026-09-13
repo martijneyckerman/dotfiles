@@ -11,5 +11,16 @@ hl.monitor({
 	position = "3840x0",
 	scale = 1,
 })
-
+hl.monitor({
+	output = "desc:Microstep MSI MP165 E6 PE5M015901508",
+	mode = "1920x1080@60.00",
+	position = "0x1080",
+	scale = 1,
+})
+hl.monitor({
+	output = "desc:XXX Beyond TV 0x00010000",
+	mode = "1920x1080@60.00",
+	position = "0x-1080",
+	scale = 1.5,
+})
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })

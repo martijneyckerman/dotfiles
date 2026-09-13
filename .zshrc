@@ -81,7 +81,6 @@ alias s='paru -Ss'
 alias i='paru -S'
 alias r='paru -Rns'
 alias u='paru -Syu'
-alias ls='eza --icons=auto -l'
 
 # Keybindings
 bindkey -e
@@ -134,3 +133,10 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # bun completions
 [ -s "/home/martijn/.bun/_bun" ] && source "/home/martijn/.bun/_bun"
+
+# Aliases
+alias ls='eza --icons -alh'
+
+# Added by flyctl installer
+export FLYCTL_INSTALL="/home/martijn/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
